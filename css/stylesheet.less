@@ -1,0 +1,509 @@
+/*
+  Imports
+*/
+@import 'https://fonts.googleapis.com/css?family=Libre+Baskerville|Muli|Roboto';
+
+/*
+  Font Faces
+*/
+@baskerville: 'Libre Baskerville', serif;
+@muli: 'Muli', sans-serif;
+@roboto: 'Roboto', sans-serif;
+/*
+  Colors
+*/
+@lowBlue: #04BAFF;
+@darkBlue: #0094CD;
+
+@lowRed: #FF2C00;
+@darkRed: #C62200;
+
+@lowGold: #FFB600;
+@darkGold: #C68D00;
+
+@dGray: #373a3c;
+@lGray: #eceeef;
+
+
+/*
+  Mixins
+*/
+.cf{
+  overflow: auto;
+  zoom: 1;
+}
+
+/*
+* Styles
+*/
+html{
+  p{
+    font-family: @muli;
+  }
+  h1{
+    font-family: @baskerville;
+  }
+}
+
+body{
+  height: auto;
+  padding: 0;
+}
+
+/*
+  Animation Styles
+*/
+//HighLights the bottom of the label
+@keyframes highlightLabel{
+  from {width: 0;}
+  to {width: 100%;}
+}
+@-moz-keyframes highlightLabel{
+  from {width: 0;}
+  to {width: 100%;}
+}
+@-webkit-keyframes highlightLabel{
+  from {width: 0;}
+  to {width: 100%;}
+}
+
+//Lifts the label above the input bar
+@keyframes liftLabel{
+  from {top: 0;}
+  to {top: -20px; font-size: 12px;}
+}
+@-moz-keyframes liftLabel{
+  from {top: 0;}
+  to {top: -20px; font-size: 12px;}
+}
+@-webkit-keyframes liftLabel{
+  from {top: 0;}
+  to {top: -20px; font-size: 12px;}
+}
+
+/*
+  Global Style
+*/
+.input-group{
+  position: relative;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  width: auto;
+  .highlight{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition:0.3s linear all; 
+    -moz-transition:0.3s linear all; 
+    -webkit-transition:0.3s linear all;
+  }
+  label{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    pointer-events:none;
+    color: @dGray;
+    transition:0.3s ease all; 
+    -moz-transition:0.3s ease all; 
+    -webkit-transition:0.3s ease all;
+  }
+  button{
+    background: transparent;
+    border: none;
+    color: @lGray;
+    padding: 7px;
+    cursor: default;
+    &:focus{
+      outline: none;
+    }
+    &:active{
+      pointer-events: none;
+    }
+  }
+  input{
+    border: none;
+    border-bottom: 1px solid @dGray;
+    pointer-events:auto;
+    width: 275px;
+    &:focus{
+      outline: none!important;
+    }
+    &:focus ~ label, &:valid ~ label{
+      color: @lowRed;
+      top: -20px;
+      font-size: 12px;
+      animation: liftLabel .3s ease;
+      -moz-animation: liftLabel .3s ease;
+      -webkit-animation: liftLabel .3s ease;
+    }
+    &:focus ~ .highlight, &:valid ~ .highlight{
+      background: @lowRed;
+      height: 2px;
+      width: 100%;
+      animation: highlightLabel .3s ease;
+      -moz-animation: highlightLabel .3s ease;
+      -webkit-animation: highlightLabel .3s ease;
+    } 
+    &:focus ~ button, &:valid ~ button{
+      cursor: pointer;
+      color: @lowRed;
+      &:active{
+        color: white!important;
+        background: @lowRed;
+      }
+    }
+  }
+}
+
+.card-container-title{
+  span{
+    font-family: @muli;
+    font-weight: 10;
+    color: @dGray;
+    border-bottom: 1px solid @lowRed;
+  }
+}
+.card-container-body{
+  text-align: center;
+  .card-box{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
+    -webkit-justify-content: center;
+    .flex-card{
+      padding: 5px;
+      flex-grow: 1;
+      margin-bottom: 5px;
+      width: 60%;
+      max-width: 60%;
+      overflow: hidden;
+    }
+  }
+  //SM
+  @media (min-width: 544px) {
+    .flex-card{
+      padding: 5px;
+      flex-grow: 1;
+      margin-bottom: 5px;
+      max-width: 50%!important;
+    }
+  }
+  //MD
+  @media (min-width: 768px) {
+    .flex-card{
+      padding: 5px;
+      flex-grow: 1;
+      max-width: 33%!important;
+    }
+
+    }
+  //LG
+  @media (min-width: 992px) {
+    .flex-card{
+      padding: 5px;
+      flex-grow: 1;
+      max-width: 25%!important;
+    }
+  }
+  //XL
+  @media (min-width: 1200px) {
+    .flex-card{
+      padding: 5px;
+      flex-grow: 1;
+      max-width: 25%!important;
+    }
+  }
+    
+  .card{
+    text-align: left;
+    min-width: 100px;
+    img{
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid @lGray;
+    }
+    a{
+      text-decoration: underline;
+      span{
+        color: @dGray;
+      }
+    }
+  }
+}
+
+
+/*
+  Landing Style
+*/
+.landing{
+  height: 100%;
+  background-image: url('../assets/tile.png');
+  #landing-canvas{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  .aligner{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
+    @media screen and (max-width:992px) {
+      .aligner-box{
+        max-width: 80%;
+      }
+    }
+    
+    @media screen and (min-width:1200px) {
+      .aligner-box{
+        max-width: 45%;
+      }
+    }
+    .align-top{
+      align-self: flex-start;
+    }
+    .align-bot{
+      align-self: flex-end;
+    }
+    
+    .landing-box{
+      display: inline-block;
+      position: relative;
+      z-index: 10;
+      min-width: 200px;
+      .title{
+        h1{
+          width: 75%;
+          background: white;
+        }
+      }
+      .info-text{
+        margin-left: 10px;
+        background: white;
+        .github-link{
+          color: @lowGold;
+          text-decoration: underline;
+          span{
+            color: @dGray;
+            &:hover{
+              color: @lowGold;
+            }
+          } 
+        }
+        .project-link{
+          color: @lowRed;
+          text-decoration: underline;
+          span{
+            color: @dGray;
+            &:hover{
+              color: @lowRed;
+            }
+          }
+        }
+        .contact-link{
+          color: @lowBlue;
+          text-decoration: underline;
+          span{
+            color: @dGray;
+            &:hover{
+              color: @lowBlue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*
+  githubProjects Page
+*/
+.githubProjects{
+  min-height: 50%;
+  padding-top: 25px;
+  overflow-x: hidden;
+  .card-container-title{
+    span{
+      border-bottom: 1px solid @lowGold;
+    }
+  }
+  .card{
+    a{
+      color: @lowGold;
+      span{
+        &:hover{
+          color: @lowGold;
+        }
+      }
+    }
+  }
+}
+
+/*
+  Projects Page
+*/
+.projects{
+  min-height: 50%;
+  padding-top: 25px;
+  overflow-x: hidden;
+  .card-container-title{
+    span{
+      border-bottom: 1px solid @lowRed;
+    }
+  }
+    .card{
+    a{
+      color: @lowRed;
+      span{
+        &:hover{
+          color: @lowRed;
+        }
+      }
+    }
+  }
+}
+
+/*
+  Contact Info Page
+*/
+.contact{
+  padding-top: 25px;
+  height: inherit;
+  min-height: 250px;
+  background-color: @lGray;
+  .contact-title{
+    padding-left: 10px;
+    span{
+      font-family: @muli;
+      font-weight: 10;
+      color: @dGray;
+      border-bottom: 1px solid @lowBlue;
+    }
+  }
+  
+  .contact-body{
+    .cf();
+    .contact-info-container{
+      padding: 10px;
+      line-height: 50px;
+      &:nth-child(3n+1){
+        .contact-info{
+          box-shadow: 0 3px 0 0 @lowBlue;
+          &:hover{
+            box-shadow: 0 5px 0 0 @lowBlue;
+            transform: translateY(-2px);
+          }
+          &:active, &:focus{
+            box-shadow: none;
+            background-color: fadeout(@dGray, 90%);
+            transform: translateY(3px);
+          }
+        }
+        .icon{
+          background: @lowBlue;
+          i{
+            text-shadow: 3px 3px 0px @darkBlue;
+          }
+        }
+        a{
+          color: @lowBlue;
+          text-decoration: underline;
+          span{
+            &:hover, &:active, &:focus{
+              color: @lowBlue!important;
+            }
+          }
+        }
+      }
+      &:nth-child(3n+2){
+        .contact-info{
+          box-shadow: 0 3px 0 0 @lowGold;
+          &:hover{
+            box-shadow: 0 5px 0 0 @lowGold;
+            transform: translateY(-2px);
+          }
+          &:active, &:focus{
+            box-shadow: none;
+            background-color: fadeout(@dGray, 90%);
+            transform: translateY(3px);
+          }
+        }
+        .icon{
+          background: @lowGold;
+          i{
+            text-shadow: 3px 3px 0px @darkGold;
+          }
+        }
+        a{
+          color: @lowGold;
+          text-decoration: underline;
+          span{
+            &:hover, &:active, &:focus{
+              color: @lowGold!important;
+            }
+          }
+        }
+      }
+      &:nth-child(3n+3){
+        .contact-info{
+          box-shadow: 0 3px 0 0 @lowRed;
+          &:hover{
+            box-shadow: 0 5px 0 0 @lowRed;
+            transform: translateY(-2px);
+          }
+          &:active, &:focus{
+            box-shadow: none;
+            background-color: fadeout(@dGray, 90%);
+            transform: translateY(3px);
+          }
+        }
+        .icon{
+          background: @lowRed;
+          i{
+            text-shadow: 3px 3px 0px @darkRed;
+          }
+        }
+        a{
+          color: @lowRed;
+          text-decoration: underline;
+          span{
+            &:hover, &:active, &:focus{
+              color: @lowRed!important;
+            }
+          }
+        }
+      }
+      a{
+        .contact-info{
+          background: white;
+          border-radius: 5px;
+          padding: 10px 10px 5px 10px;
+          .icon{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 2px;
+            text-align: center;
+            i{
+              line-height: 50px;
+              height: 100%;
+              font-size: 2em;
+              color: white;
+            }
+          }
+          .info{
+            padding-left: 4px;
+            position: relative;
+            display: inline-block;
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}
